@@ -2,9 +2,9 @@ spring:
   application:
     name: products-management
   datasource:
-    url: "**************"
-    username: "**************"
-    password: "**************"
+    url: jdbc:mysql://192.168.214.108:3306/products_management?allowPublicKeyRetrieval=true&useSSL=false
+    username: yascode
+    password: VGEdapIhoQnSoKC6Z2iY
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
