@@ -3,9 +3,7 @@ package org.yascode.products_management.api;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.yascode.products_management.api.response.ProductsResponse;
-import org.yascode.products_management.entity.Product;
-
-import java.util.List;
+import org.yascode.products_management.dto.ProductDto;
 
 import static org.yascode.products_management.util.ApiPaths.Product.*;
 
@@ -15,13 +13,13 @@ public interface ProductApi {
     ResponseEntity<ProductsResponse> getAllProducts();
 
     @GetMapping(value = PRODUCT_BY_ID)
-    ResponseEntity<Product> getProductById(@PathVariable Long id);
+    ResponseEntity<ProductDto> getProductById(@PathVariable Long id);
 
     @PostMapping
-    ResponseEntity<Product> createProduct(@RequestBody Product product);
+    ResponseEntity<?> createProduct(@RequestBody ProductDto productDto);
 
     @PutMapping(value = PRODUCT_BY_ID)
-    ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product);
+    ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody ProductDto productDto);
 
     @DeleteMapping(value = PRODUCT_BY_ID)
     ResponseEntity<?> deleteProduct(@PathVariable Long id);

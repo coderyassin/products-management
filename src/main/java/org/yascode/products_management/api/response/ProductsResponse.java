@@ -1,7 +1,7 @@
 package org.yascode.products_management.api.response;
 
 import lombok.*;
-import org.yascode.products_management.entity.Product;
+import org.yascode.products_management.dto.ProductDto;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ import java.util.List;
 @ToString
 @Builder
 public class ProductsResponse {
-    private List<Product> products;
+    private List<ProductDto> products;
 }

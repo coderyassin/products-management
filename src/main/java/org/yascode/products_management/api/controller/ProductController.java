@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.yascode.products_management.api.ProductApi;
 import org.yascode.products_management.api.response.ProductsResponse;
-import org.yascode.products_management.entity.Product;
+import org.yascode.products_management.dto.ProductDto;
 import org.yascode.products_management.service.ProductService;
 
 import java.util.Collections;
@@ -22,7 +22,7 @@ public class ProductController implements ProductApi {
 
     @Override
     public ResponseEntity<ProductsResponse> getAllProducts() {
-        List<Product> products = productService.getAllProducts();
+        List<ProductDto> products = productService.getAllProducts();
         return Optional.of(products)
                 .map(ProductsResponse::new)
                 .map(ResponseEntity::ok)
@@ -30,18 +30,18 @@ public class ProductController implements ProductApi {
     }
 
     @Override
-    public ResponseEntity<Product> getProductById(Long id) {
+    public ResponseEntity<ProductDto> getProductById(Long id) {
         return ResponseEntity.ok(productService.getProduct(id));
     }
 
     @Override
-    public ResponseEntity<Product> createProduct(Product product) {
-        return ResponseEntity.ok(productService.saveProduct(product));
+    public ResponseEntity<?> createProduct(ProductDto productDto) {
+        return ResponseEntity.ok(productService.saveProduct(productDto));
     }
 
     @Override
-    public ResponseEntity<Product> updateProduct(Long id, Product product) {
-        return ResponseEntity.ok(productService.updateProduct(id, product));
+    public ResponseEntity<?> updateProduct(Long id, ProductDto productDto) {
+        return ResponseEntity.ok(productService.updateProduct(id, productDto));
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ProductController implements ProductApi {
 
     @Override
     public ResponseEntity<ProductsResponse> getProductsByCategory(Long id) {
-        List<Product> products = productService.findProductsByCategoryId(id);
+        List<ProductDto> products = productService.findProductsByCategoryId(id);
         return Optional.of(products)
                 .map(ProductsResponse::new)
                 .map(ResponseEntity::ok)
