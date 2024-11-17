@@ -1,5 +1,6 @@
 package org.yascode.products_management.api;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.yascode.products_management.api.response.ProductsResponse;
@@ -10,7 +11,7 @@ import static org.yascode.products_management.util.ApiPaths.Product.*;
 @RequestMapping(PRODUCTS)
 public interface ProductApi {
     @GetMapping
-    ResponseEntity<ProductsResponse> getAllProducts();
+    ResponseEntity<ProductsResponse> getAllProducts(HttpServletRequest request);
 
     @GetMapping(value = PRODUCT_BY_ID)
     ResponseEntity<ProductDto> getProductById(@PathVariable Long id);

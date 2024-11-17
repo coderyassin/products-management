@@ -17,7 +17,7 @@ public class Product extends AbstractEntity {
   private String name;
   private Double price;
 
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @ManyToOne(fetch = FetchType.EAGER, optional = false)
   @JoinColumn(name = "category_id", nullable = false)
   @JsonIgnore
   private Category category;

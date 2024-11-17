@@ -6,6 +6,7 @@ import org.yascode.products_management.entity.Category;
 import org.yascode.products_management.entity.Product;
 import org.yascode.products_management.exception.ProductNotFoundException;
 import org.yascode.products_management.mapper.ProductMapper;
+import org.yascode.products_management.repository.CategoryRepository;
 import org.yascode.products_management.repository.ProductRepository;
 import org.yascode.products_management.service.ProductService;
 
@@ -16,16 +17,20 @@ import java.util.Optional;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
+    private final CategoryRepository categoryRepository;
 
     public ProductServiceImpl(ProductRepository productRepository,
-                              ProductMapper productMapper) {
+                              ProductMapper productMapper, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
     public ProductDto saveProduct(ProductDto productDto) {
         Product product = productMapper.toEntity(productDto);
+        Category category = categoryRepository.findById(23L).get();
+        product.setCategory(category);
         productRepository.save(product);
         return productMapper.toDto(product);
     }
