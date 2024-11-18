@@ -13,6 +13,9 @@ public interface ProductApi {
     @GetMapping
     ResponseEntity<ProductsResponse> getAllProducts(HttpServletRequest request);
 
+    @GetMapping(ALL)
+    ResponseEntity<ProductsResponse> products(@RequestParam int page, @RequestParam int size);
+
     @GetMapping(value = PRODUCT_BY_ID)
     ResponseEntity<ProductDto> getProductById(@PathVariable Long id);
 

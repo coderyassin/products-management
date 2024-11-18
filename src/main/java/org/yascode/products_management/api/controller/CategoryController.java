@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
 import org.yascode.products_management.api.CategoryApi;
+import org.yascode.products_management.api.response.CategoriesResponse;
 import org.yascode.products_management.dto.CategoryDto;
 import org.yascode.products_management.service.CategoryService;
 
@@ -22,6 +23,11 @@ public class CategoryController implements CategoryApi {
     @Override
     public ResponseEntity<List<CategoryDto>> getAllCategories(HttpServletRequest request) {
         return ResponseEntity.ok(categoryService.getAllCategories());
+    }
+
+    @Override
+    public ResponseEntity<CategoriesResponse> categories(int page, int size) {
+        return ResponseEntity.ok(categoryService.getAllCategories(page, size));
     }
 
     @Override

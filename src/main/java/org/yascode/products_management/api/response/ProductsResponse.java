@@ -13,4 +13,10 @@ import java.util.List;
 @Builder
 public class ProductsResponse {
     private List<ProductDto> products;
+    private int totalPages;
+    private long totalElements;
+
+    public ProductsResponse(List<ProductDto> products) {
+
+    }
 }

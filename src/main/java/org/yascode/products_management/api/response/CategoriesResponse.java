@@ -13,4 +13,6 @@ import java.util.List;
 @Builder
 public class CategoriesResponse {
     private List<CategoryDto> categories;
+    private int totalPages;
+    private long totalElements;
 }

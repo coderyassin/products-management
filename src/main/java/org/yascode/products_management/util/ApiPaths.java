@@ -6,6 +6,7 @@ public class ApiPaths {
         public static final String VERSION = "v2/";
         public static final String PATH = API + VERSION;
         public static final String PRODUCTS = PATH + "products";
+        public static final String ALL = "/all";
         public static final String PRODUCT_BY_ID = "/{id}";
         public static final String PRODUCTS_BY_CATEGORY = "/category/{id}";
     }
@@ -15,6 +16,7 @@ public class ApiPaths {
         public static final String VERSION = "v2/";
         public static final String PATH = API + VERSION;
         public static final String CATEGORIES = PATH + "categories";
+        public static final String ALL = "/all";
         public static final String CATEGORY_BY_ID = "/{id}";
     }
 }

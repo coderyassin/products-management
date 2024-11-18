@@ -1,6 +1,9 @@
 package org.yascode.products_management.service.impl;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.yascode.products_management.api.response.ProductsResponse;
 import org.yascode.products_management.dto.ProductDto;
 import org.yascode.products_management.entity.Category;
 import org.yascode.products_management.entity.Product;
@@ -80,6 +83,22 @@ public class ProductServiceImpl implements ProductService {
                 .stream()
                 .map(productMapper::toDto)
                 .toList();
+    }
+
+    @Override
+    public ProductsResponse products(int page, int size) {
+        Page<Product> productPage = productRepository.findAll(PageRequest.of(page - 1, size));
+
+        List<ProductDto> products = productPage.getContent()
+                .stream()
+                .map(productMapper::toDto)
+                .toList();
+
+        return ProductsResponse.builder()
+                .totalPages(productPage.getTotalPages())
+                .totalElements(productPage.getTotalElements())
+                .products(products)
+                .build();
     }
 
     @Override
