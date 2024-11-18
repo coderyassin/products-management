@@ -38,6 +38,11 @@ public class ProductController implements ProductApi {
     }
 
     @Override
+    public ResponseEntity<ProductsResponse> searchByName(String search, int page, int size) {
+        return ResponseEntity.ok(productService.searchByName(search, page, size));
+    }
+
+    @Override
     public ResponseEntity<ProductDto> getProductById(Long id) {
         return ResponseEntity.ok(productService.getProduct(id));
     }

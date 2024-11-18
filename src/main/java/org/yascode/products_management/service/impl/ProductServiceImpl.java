@@ -102,6 +102,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public ProductsResponse searchByName(String name, int page, int size) {
+        Page<Product> productPage = productRepository.findByNameContains(name,PageRequest.of(page - 1, size));
+
+        List<ProductDto> products = productPage.getContent()
+                .stream()
+                .map(productMapper::toDto)
+                .toList();
+
+        return ProductsResponse.builder()
+                .totalPages(productPage.getTotalPages())
+                .totalElements(productPage.getTotalElements())
+                .products(products)
+                .build();
+    }
+
+    @Override
     public List<Product> findProductsByName(String name) {
         return productRepository.findByName(name);
     }

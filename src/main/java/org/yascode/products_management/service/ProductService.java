@@ -22,6 +22,8 @@ public interface ProductService {
 
     ProductsResponse products(int page, int size);
 
+    ProductsResponse searchByName(String name, int page, int size);
+
     List<Product> findProductsByName(String name);
 
     List<Product> findProductsByNameContains(String name);

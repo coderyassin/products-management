@@ -16,6 +16,9 @@ public interface ProductApi {
     @GetMapping(ALL)
     ResponseEntity<ProductsResponse> products(@RequestParam int page, @RequestParam int size);
 
+    @GetMapping(SEARCH)
+    ResponseEntity<ProductsResponse> searchByName(@RequestParam String search, @RequestParam int page, @RequestParam int size);
+
     @GetMapping(value = PRODUCT_BY_ID)
     ResponseEntity<ProductDto> getProductById(@PathVariable Long id);
 
