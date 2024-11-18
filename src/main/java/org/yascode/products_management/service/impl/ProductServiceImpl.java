@@ -11,6 +11,7 @@ import org.yascode.products_management.repository.ProductRepository;
 import org.yascode.products_management.service.ProductService;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -29,8 +30,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDto saveProduct(ProductDto productDto) {
         Product product = productMapper.toEntity(productDto);
-        Category category = categoryRepository.findById(23L).get();
-        product.setCategory(category);
+        categoryRepository.findById(productDto.getCategory().getId()).ifPresent(category -> {
+            product.setCategory(category);
+        });
         productRepository.save(product);
         return productMapper.toDto(product);
     }
@@ -42,6 +44,12 @@ public class ProductServiceImpl implements ProductService {
             Product product = productOptional.get();
             product.setName(productDto.getName());
             product.setPrice(productDto.getPrice());
+            if(Objects.nonNull(productDto.getCategory()) && Objects.nonNull(productDto.getCategory().getId())) {
+                categoryRepository.findById(productDto.getCategory().getId())
+                        .ifPresent(category -> {
+                            product.setCategory(category);
+                        });
+            }
             productRepository.save(product);
             return productMapper.toDto(product);
         }
