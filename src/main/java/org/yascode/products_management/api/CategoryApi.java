@@ -8,9 +8,7 @@ import org.yascode.products_management.dto.CategoryDto;
 
 import java.util.List;
 
-import static org.yascode.products_management.util.ApiPaths.Category.CATEGORIES;
-import static org.yascode.products_management.util.ApiPaths.Category.CATEGORY_BY_ID;
-import static org.yascode.products_management.util.ApiPaths.Product.ALL;
+import static org.yascode.products_management.util.ApiPaths.Category.*;
 
 @RequestMapping(CATEGORIES)
 public interface CategoryApi {
@@ -22,6 +20,8 @@ public interface CategoryApi {
 
     @GetMapping(value = CATEGORY_BY_ID)
     ResponseEntity<CategoryDto> getCategoryById(@PathVariable Long id);
+    @GetMapping(SEARCH)
+    ResponseEntity<CategoriesResponse> searchByName(@RequestParam String search, @RequestParam int page, @RequestParam int size);
 
     @PostMapping
     ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto);

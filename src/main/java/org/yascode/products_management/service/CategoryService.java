@@ -20,4 +20,6 @@ public interface CategoryService {
     List<CategoryDto> getAllCategories();
 
     CategoriesResponse getAllCategories(int page, int size);
+
+    CategoriesResponse searchByName(String search, int page, int size);
 }

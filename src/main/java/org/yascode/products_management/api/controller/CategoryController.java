@@ -36,6 +36,11 @@ public class CategoryController implements CategoryApi {
     }
 
     @Override
+    public ResponseEntity<CategoriesResponse> searchByName(String search, int page, int size) {
+        return ResponseEntity.ok(categoryService.searchByName(search, page, size));
+    }
+
+    @Override
     public ResponseEntity<CategoryDto> createCategory(CategoryDto categoryDto) {
         return ResponseEntity.ok(categoryService.saveCategory(categoryDto));
     }

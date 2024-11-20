@@ -85,4 +85,20 @@ public class CategoryServiceImpl implements CategoryService {
                 .categories(categories)
                 .build();
     }
+
+    @Override
+    public CategoriesResponse searchByName(String search, int page, int size) {
+        Page<Category> categoryPage = categoryRepository.findByNameContains(search, PageRequest.of(page - 1, size));
+
+        List<CategoryDto> categories = categoryPage.getContent()
+                .stream()
+                .map(categoryMapper::toDto)
+                .toList();
+
+        return CategoriesResponse.builder()
+                .totalPages(categoryPage.getTotalPages())
+                .totalElements(categoryPage.getTotalElements())
+                .categories(categories)
+                .build();
+    }
 }

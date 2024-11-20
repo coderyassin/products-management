@@ -19,5 +19,6 @@ public class ApiPaths {
         public static final String CATEGORIES = PATH + "categories";
         public static final String ALL = "/all";
         public static final String CATEGORY_BY_ID = "/{id}";
+        public static final String SEARCH = "/search";
     }
 }
