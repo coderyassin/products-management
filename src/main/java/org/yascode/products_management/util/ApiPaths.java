@@ -21,4 +21,11 @@ public class ApiPaths {
         public static final String CATEGORY_BY_ID = "/{id}";
         public static final String SEARCH = "/search";
     }
+
+    public static class Auth {
+        public static final String API = "api/";
+        public static final String VERSION = "v2/";
+        public static final String PATH = API + VERSION;
+        public static final String AUTH = PATH + "auth";
+    }
 }
