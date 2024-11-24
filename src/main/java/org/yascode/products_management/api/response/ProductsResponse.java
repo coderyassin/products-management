@@ -17,6 +17,8 @@ public class ProductsResponse {
     private long totalElements;
 
     public ProductsResponse(List<ProductDto> products) {
-
+        this.products = products;
+        this.totalPages = products.size();
+        this.totalElements = products.size();
     }
 }
